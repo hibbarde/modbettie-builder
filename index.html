@@ -393,7 +393,7 @@ var cardMounted = false;
 var appliedCoupon = null;
 
 try {
-  stripeInstance = Stripe('pk_live_QYiBhQw0qRQehT7MiShQxS32');
+  stripeInstance = Stripe('pk_test_RaNtf4qRjeyGSncAjnH2DWCTpk_live_QYiBhQw0qRQehT7MiShQxS32');
   var stripeElements = stripeInstance.elements();
   cardElement = stripeElements.create('card', {
     style: { base: { fontFamily: 'Lato, sans-serif', fontSize: '14px', color: '#0A0A0A' } }
