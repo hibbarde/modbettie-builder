@@ -108,8 +108,7 @@ body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif
 .retainer-note strong{color:var(--white);}
 .next-btn,.back-btn,.pay-btn{width:100%;padding:14px;font-family:'Lato',sans-serif;font-weight:900;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
 .next-btn,.pay-btn{background:var(--black);color:var(--white);}
-.next-btn:hover{background:#333;}
-.pay-btn:hover{background:#333;}
+.next-btn:hover,.pay-btn:hover{background:#333;}
 .pay-btn.loading{background:#555;cursor:not-allowed;}
 .back-btn{background:transparent;border:1px solid #ccc;color:var(--grey);margin-bottom:12px;}
 .back-btn:hover{border-color:var(--black);color:var(--black);}
@@ -157,6 +156,11 @@ body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif
 .pay-info strong{color:var(--black);}
 .retainer-big{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:4px;}
 .retainer-note-sm{font-size:.73rem;color:var(--grey);margin-bottom:20px;}
+.coupon-row{display:flex;gap:8px;margin-bottom:6px;}
+.coupon-input{flex:1;border:1px solid #ddd;padding:10px 12px;font-family:'Lato',sans-serif;font-size:.84rem;color:var(--black);outline:none;}
+.coupon-input:focus{border-color:var(--black);}
+.coupon-btn{background:var(--black);color:var(--white);border:none;padding:10px 18px;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.coupon-msg{font-size:.72rem;margin-bottom:14px;min-height:16px;}
 #stripe-card-element{border:1px solid #ddd;padding:12px 13px;background:var(--white);margin-bottom:8px;}
 #stripe-errors{color:#cc3333;font-size:.72rem;margin-top:4px;min-height:16px;}
 .stripe-secure{display:flex;align-items:center;gap:6px;font-size:.66rem;color:#aaa;margin-top:9px;}
@@ -172,32 +176,14 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
 </style>
 
 <div id="svcData" style="display:none">
-  <div data-id="hmu" data-name="Hair &amp; Makeup"
-       data-desc="Professional glam by a licensed artist. Choose your service below."
-       data-price="250" data-time="90" data-menu="1"
-       data-opts='[{"l":"Hair and Makeup Full","p":250},{"l":"Hair Only","p":150},{"l":"Makeup Only","p":125}]'
-       data-icon="hair"></div>
-  <div data-id="sty" data-name="Wardrobe Styling"
-       data-desc="Pre-production phone consult plus access to Mod Bettie wardrobe closet."
-       data-price="175" data-time="0" data-icon="shirt"></div>
-  <div data-id="out" data-name="Extra Outfits"
-       data-desc="Looking for more than the 2 outfits included? We got you! We will add more time to your session to allow for that extra look."
-       data-price="75" data-time="30" data-qty="1" data-icon="layers"></div>
-  <div data-id="dig" data-name="Full Gallery"
-       data-desc="All 45+ edited high-res images from your session with print release."
-       data-price="395" data-time="0" data-icon="image"></div>
-  <div data-id="pri" data-name="Prints &amp; Products"
-       data-desc="Curated wall art, vegan leather albums, and fine art prints."
-       data-price="300" data-time="0" data-icon="package"></div>
-  <div data-id="sat" data-name="Saturday Date"
-       data-desc="Need a Saturday? Select this add-on then call or email us to schedule. Discounted sessions are available Tue-Fri only."
-       data-price="500" data-time="0" data-icon="calendar"></div>
-  <div data-id="cpl" data-name="Couples Session"
-       data-desc="Document your love with a playful and sexy couples session! Snag your partner and lets get saucy."
-       data-price="250" data-time="0" data-icon="users"></div>
-  <div data-id="loc" data-name="Location Upgrade"
-       data-desc="On-location shoot at a premium venue of your choice."
-       data-price="200" data-time="0" data-icon="map-pin"></div>
+  <div data-id="hmu" data-name="Hair and Makeup" data-desc="Professional glam by a licensed artist. Choose your service below." data-price="250" data-time="90" data-menu="1" data-opts='[{"l":"Hair and Makeup Full","p":250},{"l":"Hair Only","p":150},{"l":"Makeup Only","p":125}]' data-icon="hair"></div>
+  <div data-id="sty" data-name="Wardrobe Styling" data-desc="Pre-production phone consult plus access to Mod Bettie wardrobe closet." data-price="175" data-time="0" data-icon="shirt"></div>
+  <div data-id="out" data-name="Extra Outfits" data-desc="Looking for more than the 2 outfits included? We got you! We will add more time to your session to allow for that extra look." data-price="75" data-time="30" data-qty="1" data-icon="layers"></div>
+  <div data-id="dig" data-name="Full Gallery" data-desc="All 45+ edited high-res images from your session with print release." data-price="395" data-time="0" data-icon="image"></div>
+  <div data-id="pri" data-name="Prints and Products" data-desc="Curated wall art, vegan leather albums, and fine art prints." data-price="300" data-time="0" data-icon="package"></div>
+  <div data-id="sat" data-name="Saturday Date" data-desc="Need a Saturday? Select this add-on then call or email us to schedule. Discounted sessions are available Tue-Fri only." data-price="500" data-time="0" data-icon="calendar"></div>
+  <div data-id="cpl" data-name="Couples Session" data-desc="Document your love with a playful and sexy couples session! Snag your partner and lets get saucy." data-price="250" data-time="0" data-icon="users"></div>
+  <div data-id="loc" data-name="Location Upgrade" data-desc="On-location shoot at a premium venue of your choice." data-price="200" data-time="0" data-icon="map-pin"></div>
 </div>
 </head>
 <body>
@@ -229,10 +215,10 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
         <div class="bi-list">
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>1 Hour Portrait Experience</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>2 Outfits</span></div>
-          <div class="bi-row"><span class="bi-check">&#10003;</span><span>3 Editorial-Style Retouched Digital Images with Print &amp; Usage Release</span></div>
+          <div class="bi-row"><span class="bi-check">&#10003;</span><span>3 Editorial-Style Retouched Digital Images with Print and Usage Release</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>Mod Bettie&#8217;s How-To-Prepare Magazine</span></div>
-          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Pose &amp; Expression Coaching by Photographer Elise Kutt</span></div>
-          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Post Session Reveal &amp; Ordering Appointment</span></div>
+          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Pose and Expression Coaching by Photographer Elise Kutt</span></div>
+          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Post Session Reveal and Ordering Appointment</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>3 High-res digital images with print release</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>Opportunity to purchase additional images at $50 each</span></div>
         </div>
@@ -250,7 +236,7 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
       <div class="drop-zone" id="dropZone">
         <div class="dz-hint" id="dzHint">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <div class="dz-hint-title">Drag &amp; drop or click</div>
+          <div class="dz-hint-title">Drag and drop or click</div>
           <div class="dz-hint-sub">any add-on to build<br/>your session here</div>
         </div>
         <div id="dzItems"></div>
@@ -361,25 +347,23 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
       <h3>Secure Your Session</h3>
       <p class="card-sub">Your session fee holds your date and is applied toward your total.</p>
       <div class="pay-info">Your <strong>$350 session fee</strong> is due today. Any add-on balance of <strong id="balDue"></strong> is due at your session. Session fees are non-refundable but transferable within 60 days.</div>
-      <div class="retainer-big">$350 due today</div>
+      <div class="retainer-big" id="retainerBig">$350 due today</div>
       <p class="retainer-note-sm">Remaining add-on balance <strong id="remainBalance"></strong> due at your session.</p>
-      <!-- COUPON -->
-      <div style="margin-bottom:16px;">
-        <div style="font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:6px;font-weight:700;">Coupon Code</div>
-        <div style="display:flex;gap:8px;">
-          <input id="couponInput" type="text" placeholder="Enter code..." style="flex:1;border:1px solid #ddd;padding:10px 12px;font-family:'Lato',sans-serif;font-size:.84rem;color:var(--black);outline:none;"/>
-          <button onclick="applyCoupon()" id="couponBtn" style="background:var(--black);color:var(--white);border:none;padding:10px 18px;font-family:'Lato',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Apply</button>
+      <div class="fg" style="margin-bottom:6px">
+        <label>Coupon Code</label>
+        <div class="coupon-row">
+          <input class="coupon-input" id="couponInput" type="text" placeholder="Enter code..."/>
+          <button class="coupon-btn" id="couponBtn" onclick="applyCoupon()">Apply</button>
         </div>
-        <div id="couponMsg" style="font-size:.72rem;margin-top:6px;min-height:16px;"></div>
       </div>
-
+      <div class="coupon-msg" id="couponMsg"></div>
       <div id="stripe-card-element"></div>
       <div id="stripe-errors"></div>
       <div class="stripe-secure">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         Secured by Stripe &#183; 256-bit SSL encryption
       </div>
-      <button class="pay-btn" id="payBtn" style="margin-top:16px" onclick="submitBooking()">Pay $350 Session Fee &amp; Confirm Booking</button>
+      <button class="pay-btn" id="payBtn" style="margin-top:16px" onclick="submitBooking()">Pay $350 Session Fee and Confirm Booking</button>
     </div>
   </div>
 </div>
@@ -406,8 +390,8 @@ var now = new Date(); vY = now.getFullYear(); vM = now.getMonth();
 var stripeInstance = null;
 var cardElement = null;
 var cardMounted = false;
+var appliedCoupon = null;
 
-// Init Stripe safely
 try {
   stripeInstance = Stripe('pk_live_QYiBhQw0qRQehT7MiShQxS32');
   var stripeElements = stripeInstance.elements();
@@ -486,6 +470,13 @@ function getDisplayName(id) {
   return n;
 }
 function getTotal() { var t = BASE; for (var id in selected) { t += getP(id); } return t; }
+function getDiscountedTotal() {
+  var total = BASE;
+  if (!appliedCoupon) return total;
+  if (appliedCoupon.percent_off) return Math.round(total * (1 - appliedCoupon.percent_off / 100));
+  if (appliedCoupon.amount_off) return Math.max(0, total - Math.round(appliedCoupon.amount_off / 100));
+  return total;
+}
 function fmtTime(m) { var h = Math.floor(m / 60), r = m % 60; return (h ? h + 'h ' : '') + (r < 10 && h ? '0' : '') + r + 'm'; }
 function getTotalMins() {
   var m = 60;
@@ -502,7 +493,7 @@ svcs.forEach(function(s) {
   if (s.time > 0) { var tt = document.createElement('span'); tt.style.cssText = 'display:block;color:#aaa;font-size:.6rem;margin-top:3px'; tt.textContent = '+ ' + fmtTime(s.time) + ' session time'; tip.appendChild(tt); }
   card.appendChild(tip);
   var chk = document.createElement('div'); chk.className = 'svc-check';
-  var chkSvg = makeSvg('M20 6L9 17l-5-5', 8); chk.appendChild(chkSvg); card.appendChild(chk);
+  chk.appendChild(makeSvg('M20 6L9 17l-5-5', 8)); card.appendChild(chk);
   var ico = document.createElement('div'); ico.className = 'svc-icon'; ico.appendChild(makeSvg(s.paths, 14)); card.appendChild(ico);
   var nm = document.createElement('div'); nm.className = 'svc-name'; nm.textContent = s.name; card.appendChild(nm);
   var pr = document.createElement('div'); pr.className = 'svc-price'; pr.textContent = (s.hasMenu ? 'from ' : '') + '+$' + (s.hasMenu ? s.opts[0].p : s.price); card.appendChild(pr);
@@ -688,312 +679,129 @@ function renderMiniSum() {
   ids.forEach(function(id) { addRow(getDisplayName(id), '+$' + getP(id)); });
   addRow('Session Total', '$' + getTotal().toLocaleString());
 }
+
 function renderPayStep() {
   var remain = getTotal() - BASE;
   document.getElementById('balDue').textContent = '$' + remain.toLocaleString();
   document.getElementById('remainBalance').textContent = '$' + remain.toLocaleString();
 }
+
 function goToPayment() {
-  if (!document.getElementById('f_first').value.trim() || !document.getElementById('f_email').value.trim()) { alert('Please enter your name and email to continue.'); return; }
+  if (!document.getElementById('f_first').value.trim() || !document.getElementById('f_email').value.trim()) {
+    alert('Please enter your name and email to continue.'); return;
+  }
   goStep(4);
 }
 
-var appliedCoupon = null;
-
-async function applyCoupon() {
-  var code = document.getElementById('couponInput').value.trim();
+function applyCoupon() {
+  var code = document.getElementById('couponInput').value.trim().toUpperCase();
   var msg = document.getElementById('couponMsg');
   var btn = document.getElementById('couponBtn');
   if (!code) { msg.style.color = '#cc3333'; msg.textContent = 'Please enter a coupon code.'; return; }
-  btn.textContent = 'Checking...'; btn.disabled = true;
-  try {
-    var res = await fetch(BACKEND + '/api/validate-coupon', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: code })
-    });
-    var data = await res.json();
+  btn.textContent = 'Checking...';
+  btn.disabled = true;
+  fetch(BACKEND + '/api/validate-coupon', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code: code })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
     if (data.valid) {
       appliedCoupon = data;
       msg.style.color = '#2a7a2a';
-      var savings = data.percent_off ? data.percent_off + '% off' : '
-  var btn = document.getElementById('payBtn');
-  var errEl = document.getElementById('stripe-errors');
-  btn.textContent = 'Processing...';
-  btn.classList.add('loading');
-  btn.disabled = true;
-  errEl.textContent = '';
-
-  try {
-    var intentRes = await fetch(BACKEND + '/api/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        sessionTotal: getTotal(),
-        discountedTotal: getDiscountedTotal(),
-        couponCode: appliedCoupon ? document.getElementById('couponInput').value.trim() : null,
-        clientName: document.getElementById('f_first').value.trim() + ' ' + document.getElementById('f_last').value.trim()
-      })
-    });
-    var intentData = await intentRes.json();
-    if (!intentData.clientSecret) throw new Error('Could not create payment. Please try again.');
-
-    var result = await stripeInstance.confirmCardPayment(intentData.clientSecret, { payment_method: { card: cardElement } });
-    if (result.error) throw new Error(result.error.message);
-
-    var ids = Object.keys(selected);
-    var confirmRes = await fetch(BACKEND + '/api/confirm-booking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: document.getElementById('f_first').value.trim(),
-        lastName: document.getElementById('f_last').value.trim(),
-        email: document.getElementById('f_email').value.trim(),
-        phone: document.getElementById('f_phone').value.trim(),
-        date: dateStr(),
-        time: chosenTime,
-        style: document.getElementById('f_style').value,
-        note: document.getElementById('f_note').value.trim(),
-        addOnNames: ids.map(function(id) { return getDisplayName(id); }),
-        totalMins: getTotalMins(),
-        sessionTotal: getTotal(),
-        paymentIntentId: result.paymentIntent.id
-      })
-    });
-    var confirmData = await confirmRes.json();
-    if (!confirmData.success) throw new Error('Booking confirmation failed. Please contact us directly.');
-
-    [1, 2, 3, 4].forEach(function(i) {
-      document.getElementById('panel' + i).classList.remove('active');
-      document.getElementById('tab' + i).classList.remove('active');
-    });
-    document.getElementById('panelSuccess').classList.add('active');
-    document.getElementById('successDetail').textContent = dateStr() + ' at ' + chosenTime + ' - $350 paid - Confirmation sent to ' + document.getElementById('f_email').value.trim();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch(err) {
-    errEl.textContent = err.message;
-    btn.textContent = 'Pay $350 Session Fee & Confirm Booking';
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
-}
-
-render();
-</script>
-</body>
-</html>
- + (data.amount_off / 100) + ' off';
-      msg.textContent = '\u2713 Coupon applied! ' + savings;
+      var savings = data.percent_off ? data.percent_off + '% off' : '$' + (data.amount_off / 100) + ' off';
+      msg.textContent = 'Coupon applied! ' + savings;
       document.getElementById('couponInput').disabled = true;
       btn.textContent = 'Applied';
-      updatePayTotal();
+      var discounted = getDiscountedTotal();
+      var big = document.getElementById('retainerBig');
+      if (big) big.textContent = '$' + discounted + ' due today';
+      var payBtn = document.getElementById('payBtn');
+      if (payBtn) payBtn.textContent = 'Pay $' + discounted + ' and Confirm Booking';
     } else {
       appliedCoupon = null;
       msg.style.color = '#cc3333';
       msg.textContent = data.error || 'Invalid coupon code.';
-      btn.textContent = 'Apply'; btn.disabled = false;
+      btn.textContent = 'Apply';
+      btn.disabled = false;
     }
-  } catch(e) {
-    msg.style.color = '#cc3333'; msg.textContent = 'Could not validate coupon. Try again.';
-    btn.textContent = 'Apply'; btn.disabled = false;
-  }
+  })
+  .catch(function() {
+    msg.style.color = '#cc3333';
+    msg.textContent = 'Could not validate. Try again.';
+    btn.textContent = 'Apply';
+    btn.disabled = false;
+  });
 }
 
-function getDiscountedTotal() {
-  var total = BASE;
-  if (!appliedCoupon) return total;
-  if (appliedCoupon.percent_off) return Math.round(total * (1 - appliedCoupon.percent_off / 100));
-  if (appliedCoupon.amount_off) return Math.max(0, total - Math.round(appliedCoupon.amount_off / 100));
-  return total;
-}
-
-function updatePayTotal() {
+function submitBooking() {
+  var btn = document.getElementById('payBtn');
+  var errEl = document.getElementById('stripe-errors');
+  var firstName = document.getElementById('f_first').value.trim();
+  var lastName = document.getElementById('f_last').value.trim();
+  var email = document.getElementById('f_email').value.trim();
+  var phone = document.getElementById('f_phone').value.trim();
+  var style = document.getElementById('f_style').value;
+  var note = document.getElementById('f_note').value.trim();
+  var ids = Object.keys(selected);
   var discounted = getDiscountedTotal();
-  var btn = document.getElementById('payBtn');
-  if (btn) btn.textContent = 'Pay 
-  var btn = document.getElementById('payBtn');
-  var errEl = document.getElementById('stripe-errors');
+
   btn.textContent = 'Processing...';
   btn.classList.add('loading');
   btn.disabled = true;
   errEl.textContent = '';
 
-  try {
-    var intentRes = await fetch(BACKEND + '/api/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionTotal: getTotal(), clientName: document.getElementById('f_first').value.trim() + ' ' + document.getElementById('f_last').value.trim() })
-    });
-    var intentData = await intentRes.json();
+  fetch(BACKEND + '/api/create-payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      sessionTotal: getTotal(),
+      discountedTotal: discounted,
+      clientName: firstName + ' ' + lastName
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(intentData) {
     if (!intentData.clientSecret) throw new Error('Could not create payment. Please try again.');
-
-    var result = await stripeInstance.confirmCardPayment(intentData.clientSecret, { payment_method: { card: cardElement } });
+    return stripeInstance.confirmCardPayment(intentData.clientSecret, {
+      payment_method: { card: cardElement }
+    });
+  })
+  .then(function(result) {
     if (result.error) throw new Error(result.error.message);
-
-    var ids = Object.keys(selected);
-    var confirmRes = await fetch(BACKEND + '/api/confirm-booking', {
+    return fetch(BACKEND + '/api/confirm-booking', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        firstName: document.getElementById('f_first').value.trim(),
-        lastName: document.getElementById('f_last').value.trim(),
-        email: document.getElementById('f_email').value.trim(),
-        phone: document.getElementById('f_phone').value.trim(),
-        date: dateStr(),
-        time: chosenTime,
-        style: document.getElementById('f_style').value,
-        note: document.getElementById('f_note').value.trim(),
+        firstName: firstName, lastName: lastName,
+        email: email, phone: phone,
+        date: dateStr(), time: chosenTime,
+        style: style, note: note,
         addOnNames: ids.map(function(id) { return getDisplayName(id); }),
         totalMins: getTotalMins(),
         sessionTotal: getTotal(),
         paymentIntentId: result.paymentIntent.id
       })
     });
-    var confirmData = await confirmRes.json();
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(confirmData) {
     if (!confirmData.success) throw new Error('Booking confirmation failed. Please contact us directly.');
-
-    [1, 2, 3, 4].forEach(function(i) {
+    [1,2,3,4].forEach(function(i) {
       document.getElementById('panel' + i).classList.remove('active');
       document.getElementById('tab' + i).classList.remove('active');
     });
     document.getElementById('panelSuccess').classList.add('active');
-    document.getElementById('successDetail').textContent = dateStr() + ' at ' + chosenTime + ' - $350 paid - Confirmation sent to ' + document.getElementById('f_email').value.trim();
+    document.getElementById('successDetail').textContent = dateStr() + ' at ' + chosenTime + ' - $' + discounted + ' paid - Confirmation sent to ' + email;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch(err) {
+  })
+  .catch(function(err) {
     errEl.textContent = err.message;
-    btn.textContent = 'Pay $350 Session Fee & Confirm Booking';
+    btn.textContent = 'Pay $' + discounted + ' Session Fee and Confirm Booking';
     btn.classList.remove('loading');
     btn.disabled = false;
-  }
-}
-
-render();
-</script>
-</body>
-</html>
- + discounted + ' Session Fee & Confirm Booking';
-  var big = document.querySelector('.retainer-big');
-  if (big) big.textContent = '
-  var btn = document.getElementById('payBtn');
-  var errEl = document.getElementById('stripe-errors');
-  btn.textContent = 'Processing...';
-  btn.classList.add('loading');
-  btn.disabled = true;
-  errEl.textContent = '';
-
-  try {
-    var intentRes = await fetch(BACKEND + '/api/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionTotal: getTotal(), clientName: document.getElementById('f_first').value.trim() + ' ' + document.getElementById('f_last').value.trim() })
-    });
-    var intentData = await intentRes.json();
-    if (!intentData.clientSecret) throw new Error('Could not create payment. Please try again.');
-
-    var result = await stripeInstance.confirmCardPayment(intentData.clientSecret, { payment_method: { card: cardElement } });
-    if (result.error) throw new Error(result.error.message);
-
-    var ids = Object.keys(selected);
-    var confirmRes = await fetch(BACKEND + '/api/confirm-booking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: document.getElementById('f_first').value.trim(),
-        lastName: document.getElementById('f_last').value.trim(),
-        email: document.getElementById('f_email').value.trim(),
-        phone: document.getElementById('f_phone').value.trim(),
-        date: dateStr(),
-        time: chosenTime,
-        style: document.getElementById('f_style').value,
-        note: document.getElementById('f_note').value.trim(),
-        addOnNames: ids.map(function(id) { return getDisplayName(id); }),
-        totalMins: getTotalMins(),
-        sessionTotal: getTotal(),
-        paymentIntentId: result.paymentIntent.id
-      })
-    });
-    var confirmData = await confirmRes.json();
-    if (!confirmData.success) throw new Error('Booking confirmation failed. Please contact us directly.');
-
-    [1, 2, 3, 4].forEach(function(i) {
-      document.getElementById('panel' + i).classList.remove('active');
-      document.getElementById('tab' + i).classList.remove('active');
-    });
-    document.getElementById('panelSuccess').classList.add('active');
-    document.getElementById('successDetail').textContent = dateStr() + ' at ' + chosenTime + ' - $350 paid - Confirmation sent to ' + document.getElementById('f_email').value.trim();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch(err) {
-    errEl.textContent = err.message;
-    btn.textContent = 'Pay $350 Session Fee & Confirm Booking';
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
-}
-
-render();
-</script>
-</body>
-</html>
- + discounted + ' due today';
-}
-  var btn = document.getElementById('payBtn');
-  var errEl = document.getElementById('stripe-errors');
-  btn.textContent = 'Processing...';
-  btn.classList.add('loading');
-  btn.disabled = true;
-  errEl.textContent = '';
-
-  try {
-    var intentRes = await fetch(BACKEND + '/api/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sessionTotal: getTotal(), clientName: document.getElementById('f_first').value.trim() + ' ' + document.getElementById('f_last').value.trim() })
-    });
-    var intentData = await intentRes.json();
-    if (!intentData.clientSecret) throw new Error('Could not create payment. Please try again.');
-
-    var result = await stripeInstance.confirmCardPayment(intentData.clientSecret, { payment_method: { card: cardElement } });
-    if (result.error) throw new Error(result.error.message);
-
-    var ids = Object.keys(selected);
-    var confirmRes = await fetch(BACKEND + '/api/confirm-booking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: document.getElementById('f_first').value.trim(),
-        lastName: document.getElementById('f_last').value.trim(),
-        email: document.getElementById('f_email').value.trim(),
-        phone: document.getElementById('f_phone').value.trim(),
-        date: dateStr(),
-        time: chosenTime,
-        style: document.getElementById('f_style').value,
-        note: document.getElementById('f_note').value.trim(),
-        addOnNames: ids.map(function(id) { return getDisplayName(id); }),
-        totalMins: getTotalMins(),
-        sessionTotal: getTotal(),
-        paymentIntentId: result.paymentIntent.id
-      })
-    });
-    var confirmData = await confirmRes.json();
-    if (!confirmData.success) throw new Error('Booking confirmation failed. Please contact us directly.');
-
-    [1, 2, 3, 4].forEach(function(i) {
-      document.getElementById('panel' + i).classList.remove('active');
-      document.getElementById('tab' + i).classList.remove('active');
-    });
-    document.getElementById('panelSuccess').classList.add('active');
-    document.getElementById('successDetail').textContent = dateStr() + ' at ' + chosenTime + ' - $350 paid - Confirmation sent to ' + document.getElementById('f_email').value.trim();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch(err) {
-    errEl.textContent = err.message;
-    btn.textContent = 'Pay $350 Session Fee & Confirm Booking';
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
+  });
 }
 
 render();
