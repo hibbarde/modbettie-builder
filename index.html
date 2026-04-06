@@ -11,12 +11,12 @@
 :root{--black:#0A0A0A;--ink:#111;--charcoal:#222;--mid:#444;--grey:#888;--silver:#BBB;--smoke:#E8E8E8;--offwhite:#F9F7F4;--white:#FFF;}
 html{scroll-behavior:smooth;}
 body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif;min-height:100vh;}
-.hero{background:var(--black);text-align:center;padding:72px 20px 56px;}
-.hero-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--silver);margin-bottom:20px;font-weight:700;white-space:nowrap;}
+.hero{background:var(--black);text-align:center;padding:72px 20px 30px;}
+.hero-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--silver);margin-bottom:40px;font-weight:700;white-space:nowrap;}
+.hero-tag::after{content:'';display:block;width:40px;height:1px;background:var(--silver);margin:20px auto 20px;opacity:0.4;}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:18px;}
 .hero h1 em{font-style:italic;color:var(--silver);}
 .hero p{font-size:.92rem;color:#999;max-width:460px;margin:0 auto;line-height:1.9;font-weight:300;}
-.ornament{color:var(--silver);letter-spacing:10px;margin:20px 0;display:block;font-size:.9rem;}
 .steps-bar{background:var(--ink);display:flex;justify-content:center;border-bottom:1px solid #222;}
 .step-tab{padding:16px 24px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#555;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-weight:700;display:flex;align-items:center;gap:8px;}
 .step-tab.active{color:var(--white);border-bottom-color:var(--white);}
@@ -105,8 +105,7 @@ body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif
 .retainer-note strong{color:var(--white);}
 .next-btn,.back-btn,.pay-btn{width:100%;padding:14px;font-family:'Lato',sans-serif;font-weight:900;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
 .next-btn,.pay-btn{background:var(--black);color:var(--white);}
-.next-btn:hover,.pay-btn:hover{background:#333;}
-.pay-btn.loading{background:#555;cursor:not-allowed;}
+.next-btn:hover{background:#333;}
 .back-btn{background:transparent;border:1px solid #ccc;color:var(--grey);margin-bottom:12px;}
 .back-btn:hover{border-color:var(--black);color:var(--black);}
 .white-card{background:var(--white);border:1px solid var(--smoke);padding:28px;margin-bottom:20px;}
@@ -156,6 +155,13 @@ body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif
 .pay-option.selected .pay-option-label{color:var(--black);}
 .pay-option-amount{font-size:1.4rem;font-weight:900;letter-spacing:-1px;color:var(--black);}
 .pay-option-sub{font-size:.62rem;color:var(--grey);margin-top:3px;line-height:1.5;}
+.agree-block{margin-bottom:20px;}
+.agree-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.agree-row input[type=checkbox]{margin-top:3px;flex-shrink:0;width:16px;height:16px;cursor:pointer;}
+.agree-row span{font-size:.72rem;color:var(--mid);line-height:1.7;}
+.agree-row a{color:var(--black);font-weight:700;text-decoration:underline;}
+#stripe-card-element{border:1px solid #ddd;padding:12px 13px;background:var(--white);margin-bottom:8px;}
+#stripe-errors{color:#cc3333;font-size:.72rem;margin-top:4px;min-height:16px;}
 .stripe-secure{display:flex;align-items:center;gap:6px;font-size:.66rem;color:#aaa;margin-top:9px;}
 .stripe-secure svg{width:10px;height:10px;}
 .success-wrap{max-width:500px;margin:0 auto;padding:72px 24px;text-align:center;}
@@ -165,19 +171,17 @@ body{background:var(--offwhite);color:var(--black);font-family:'Lato',sans-serif
 .success-wrap h2 em{font-style:italic;}
 .success-wrap p{font-size:.84rem;color:var(--mid);line-height:1.9;margin-bottom:7px;}
 hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
-#stripe-card-element{border:1px solid #ddd;padding:12px 13px;background:var(--white);margin-bottom:8px;}
-#stripe-errors{color:#cc3333;font-size:.72rem;margin-top:4px;min-height:16px;}
 </style>
 
 <div id="svcData" style="display:none">
-  <div data-id="hmu" data-name="Hair and Makeup" data-desc="Professional glam by a licensed artist. Choose your service below." data-price="225" data-time="90" data-menu="1" data-opts='[{"l":"Hair and Makeup Full","p":225,"t":90},{"l":"Hair Only","p":125,"t":60},{"l":"Makeup Only","p":125,"t":60}]' data-icon="hair"></div>
   <div data-id="sty" data-name="Wardrobe Styling" data-desc="Pre-production phone consult plus access to Mod Bettie wardrobe closet." data-price="175" data-time="0" data-icon="shirt"></div>
+  <div data-id="hmu" data-name="Hair and Makeup" data-desc="Professional glam by a licensed artist. Choose your service below." data-price="225" data-time="90" data-menu="1" data-opts='[{"l":"Hair and Makeup Full","p":225,"t":90},{"l":"Hair Only","p":125,"t":60},{"l":"Makeup Only","p":125,"t":60}]' data-icon="hair"></div>
+  <div data-id="loc" data-name="Location Upgrade" data-desc="On-location shoot at a premium venue of your choice." data-price="200" data-time="0" data-icon="map-pin"></div>
   <div data-id="out" data-name="Extra Outfits" data-desc="Looking for more than the 2 outfits included? We got you! We will add more time to your session to allow for that extra look." data-price="75" data-time="30" data-qty="1" data-icon="layers"></div>
+  <div data-id="cpl" data-name="Couples Session" data-desc="Document your love with a playful and sexy couples session! Snag your partner and lets get saucy." data-price="250" data-time="0" data-icon="users"></div>
+  <div data-id="sat" data-name="Saturday Date" data-desc="Need a Saturday? Discounted sessions are available Tue-Fri only. Select this add-on and we will be in touch to schedule." data-price="500" data-time="0" data-icon="calendar"></div>
   <div data-id="dig" data-name="Digital Image Packages" data-desc="Upgrade your image collection. Choose the package that fits your vision." data-price="350" data-time="0" data-menu="1" data-opts='[{"l":"10 Image Package","p":350},{"l":"20 Image Package","p":600},{"l":"Full Gallery (Min 35 Images)","p":900}]' data-icon="image"></div>
   <div data-id="pri" data-name="Print Credit" data-desc="Curated wall art, vegan leather albums, and fine art prints. Choose your credit amount." data-price="300" data-time="0" data-menu="1" data-opts='[{"l":"$300 Print Credit","p":300},{"l":"$500 Print Credit","p":500},{"l":"$700 Print Credit","p":700}]' data-icon="package"></div>
-  <div data-id="sat" data-name="Saturday Date" data-desc="Need a Saturday? Discounted sessions are available Tue-Fri only. Select this add-on and we will be in touch to schedule." data-price="500" data-time="0" data-icon="calendar"></div>
-  <div data-id="cpl" data-name="Couples Session" data-desc="Document your love with a playful and sexy couples session! Snag your partner and lets get saucy." data-price="250" data-time="0" data-icon="users"></div>
-  <div data-id="loc" data-name="Location Upgrade" data-desc="On-location shoot at a premium venue of your choice." data-price="200" data-time="0" data-icon="map-pin"></div>
   <div data-id="rush" data-name="Rush Products" data-desc="Scheduled late and need your products rushed? We will send you to the front of the retouching production list!" data-price="150" data-time="0" data-icon="zap"></div>
 </div>
 </head>
@@ -186,7 +190,6 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
 <div class="hero">
   <p class="hero-tag">&#10022; The Self-Exploration Portrait Experience &#10022;</p>
   <h1>Design Your<br/><em>Dream Session</em></h1>
-  <span class="ornament">&#8212; &#10022; &#8212;</span>
   <p>Curate every detail, choose your date, and secure your spot.</p>
 </div>
 
@@ -204,12 +207,12 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
       <p class="sec-label">Your Foundation</p>
       <div class="base-card">
         <h3>Empowerment Portrait Session</h3>
-        <p>Your full signature experience — professionally directed, beautifully lit, and entirely yours.</p>
+        <p>Your full signature experience professionally directed, beautifully lit, and entirely yours.</p>
         <div class="bi-list">
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>1 Hour Portrait Experience</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>2 Outfits</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>3 Retouched Digital Images with Print and Usage Release</span></div>
-          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Mod Bettie&#8217;s How-To-Prepare Magazine</span></div>
+          <div class="bi-row"><span class="bi-check">&#10003;</span><span>Mod Bettie How-To-Prepare Magazine</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>Pose and Expression Coaching by Photographer Elise Kutt</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>Post Session Reveal and Ordering Appointment</span></div>
           <div class="bi-row"><span class="bi-check">&#10003;</span><span>Opportunity to purchase additional images at $75 each</span></div>
@@ -253,6 +256,7 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
           <span class="total-num" id="totalNum">$350</span>
         </div>
         <div class="retainer-note"><strong>$350 non-refundable retainer</strong> due today to secure your date. Add-on balance due at your session.</div>
+        <div class="retainer-note" style="margin-top:8px;"><strong>Discounted sessions</strong> must be used by <strong>September 1st</strong>. If unused, your investment can be applied toward a full-priced session after that date.</div>
       </div>
       <button class="next-btn" onclick="goStep(2)">Choose Your Date &#8594;</button>
     </div>
@@ -265,7 +269,8 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
     <button class="back-btn" onclick="goStep(1)">&#8592; Back to Session Builder</button>
     <div class="white-card">
       <h3>Choose Your Session Date</h3>
-      <p class="card-sub">Sessions available Tuesday&#8211;Saturday. Select a date to view open time slots.</p>
+      <p class="card-sub">Sessions available Tuesday&#8211;Friday. If you have upgraded to a Saturday date, choose the Friday closest to your preferred date and we will reach out to confirm your Saturday.</p>
+      <p class="card-sub" style="font-size:.72rem;color:#888;border-left:3px solid var(--black);padding-left:12px;margin-bottom:20px;">If you are shooting outdoors, choose the <strong style="color:var(--black)">7pm</strong> time for the best light! If you have upgraded to a studio or on-location option, <strong style="color:var(--black)">10am or 3pm</strong> is best for indoors.</p>
       <div class="cal-nav">
         <button onclick="prevMonth()">&#8249;</button>
         <span class="cal-month" id="calMonth"></span>
@@ -350,13 +355,24 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
         </div>
       </div>
 
+      <div class="agree-block">
+        <div class="agree-row">
+          <input type="checkbox" id="chkContract" onchange="updatePayBtn()"/>
+          <span>I have read and agree to the <a href="https://docs.google.com/document/d/1aGE2h4JKoSSLjihhWaiYIASD6ayDuFKW9s2R0dNm81E/edit" target="_blank">Mod Bettie Session Contract</a>. By checking this box I am entering into a legally binding agreement.</span>
+        </div>
+        <div class="agree-row">
+          <input type="checkbox" id="chkDates" onchange="updatePayBtn()"/>
+          <span>I understand this is a <strong>discounted session rate</strong> and must be used by <strong>September 1st, 2026</strong>. If unused by September 1st, my investment may be applied toward a full-priced session. All sessions must be completed by <strong>January 1st, 2027</strong>, after which the session fee is forfeited with no refund available. The $350 retainer is <strong>non-refundable</strong> but transferable within 60 days.</span>
+        </div>
+      </div>
+
       <div id="stripe-card-element"></div>
       <div id="stripe-errors"></div>
       <div class="stripe-secure">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         Secured by Stripe &#183; 256-bit SSL encryption
       </div>
-      <button class="pay-btn" id="payBtn" style="margin-top:16px" onclick="submitBooking()">Pay $350 Retainer and Confirm Booking</button>
+      <button class="pay-btn" id="payBtn" style="margin-top:16px;opacity:0.4;cursor:not-allowed;" disabled onclick="submitBooking()">Pay $350 Retainer and Confirm Booking</button>
     </div>
   </div>
 </div>
@@ -365,8 +381,8 @@ hr.div{border:none;border-top:1px solid var(--smoke);margin:20px 0;}
 <div class="panel" id="panelSuccess">
   <div class="success-wrap">
     <div class="success-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <p style="font-size:.63rem;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-bottom:14px;font-weight:700">You&#8217;re officially on the calendar</p>
-    <h2><strong>You&#8217;re booked,</strong><br/><em>beautiful.</em></h2>
+    <p style="font-size:.63rem;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-bottom:14px;font-weight:700">You are officially on the calendar</p>
+    <h2><strong>You are booked,</strong><br/><em>beautiful.</em></h2>
     <p>Your session has been confirmed and a receipt has been sent to your inbox.</p>
     <p>Elise will be in touch within 24 hours to begin your pre-session consultation.</p>
   </div>
@@ -402,6 +418,17 @@ function mountCard() {
       if (el) el.textContent = e.error ? e.error.message : '';
     });
   }, 200);
+}
+
+function updatePayBtn() {
+  var c1 = document.getElementById('chkContract');
+  var c2 = document.getElementById('chkDates');
+  var btn = document.getElementById('payBtn');
+  if (!c1 || !c2 || !btn) return;
+  var ok = c1.checked && c2.checked;
+  btn.disabled = !ok;
+  btn.style.opacity = ok ? '1' : '0.4';
+  btn.style.cursor = ok ? 'pointer' : 'not-allowed';
 }
 
 function selectPayOption(opt) {
@@ -600,7 +627,6 @@ function render() {
     var v = document.createElement('span'); v.textContent = fmtTime(r.mins);
     row.appendChild(l); row.appendChild(v); bd.appendChild(row);
   });
-  // update pay in full display
   var fullDisp = document.getElementById('fullAmountDisplay');
   if (fullDisp) fullDisp.textContent = '$' + getTotal().toLocaleString();
   if (payOption === 'full') {
@@ -610,7 +636,7 @@ function render() {
 }
 
 function goStep(n) {
-  [1, 2, 3, 4].forEach(function(i) {
+  [1,2,3,4].forEach(function(i) {
     document.getElementById('panel' + i).classList.toggle('active', i === n);
     document.getElementById('tab' + i).classList.toggle('active', i === n);
   });
@@ -624,8 +650,13 @@ function goStep(n) {
 var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var busy = {};
-(function() { for (var d = 1; d <= 28; d++) { var k = now.getFullYear() + '-' + now.getMonth() + '-' + d; if (Math.random() < 0.25) busy[k] = ['10:00 AM', '2:00 PM']; } })();
-var allSlots = ['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
+(function() {
+  for (var d = 1; d <= 28; d++) {
+    var k = now.getFullYear() + '-' + now.getMonth() + '-' + d;
+    if (Math.random() < 0.25) busy[k] = ['10:00 AM','3:00 PM'];
+  }
+})();
+var allSlots = ['10:00 AM','3:00 PM','7:00 PM'];
 
 function renderCal() {
   document.getElementById('calMonth').textContent = MONTHS[vM] + ' ' + vY;
@@ -633,57 +664,67 @@ function renderCal() {
   while (cg.firstChild) cg.removeChild(cg.firstChild);
   DAYS.forEach(function(d) { var el = document.createElement('div'); el.className = 'cal-dn'; el.textContent = d; cg.appendChild(el); });
   var first = new Date(vY, vM, 1).getDay(), days = new Date(vY, vM + 1, 0).getDate();
-  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var today = new Date(); today.setHours(0,0,0,0);
   for (var i = 0; i < first; i++) cg.appendChild(document.createElement('div'));
   for (var d = 1; d <= days; d++) {
     var date = new Date(vY, vM, d), dow = date.getDay();
-    var past = date < today, wknd = dow === 0 || dow === 6;
+    var past = date < today;
+    var wknd = dow === 0 || dow === 6;
+    var afterCutoff = (vY > 2026) || (vY === 2026 && vM >= 8);
     var el = document.createElement('div');
-    el.className = 'cal-day' + (past || wknd ? ' past' : ' avail');
+    el.className = 'cal-day' + (past || wknd || afterCutoff ? ' past' : ' avail');
     if (date.toDateString() === today.toDateString()) el.className += ' today';
     if (chosenDay && date.toDateString() === new Date(chosenDay).toDateString()) el.className += ' chosen';
     el.textContent = d;
-    if (!past && !wknd) { (function(yy, mm, dd) { el.addEventListener('click', function() { pickDay(yy, mm, dd); }); })(vY, vM, d); }
+    if (!past && !wknd && !afterCutoff) {
+      (function(yy,mm,dd) { el.addEventListener('click', function() { pickDay(yy,mm,dd); }); })(vY,vM,d);
+    }
     cg.appendChild(el);
   }
 }
-function pickDay(y, m, d) {
-  chosenDay = new Date(y, m, d); chosenTime = null;
+
+function pickDay(y,m,d) {
+  chosenDay = new Date(y,m,d); chosenTime = null;
   document.getElementById('dateNextBtn').style.display = 'none';
-  renderCal(); showSlots(y, m, d);
+  renderCal(); showSlots(y,m,d);
 }
-function showSlots(y, m, d) {
+function showSlots(y,m,d) {
   document.getElementById('slotsWrap').style.display = 'block';
   document.getElementById('selDateLabel').textContent = MONTHS[m] + ' ' + d;
-  var b = busy[y + '-' + m + '-' + d] || [];
+  var b = busy[y+'-'+m+'-'+d] || [];
   var sg = document.getElementById('slotsGrid');
   while (sg.firstChild) sg.removeChild(sg.firstChild);
   allSlots.forEach(function(t) {
-    var btn = document.createElement('button'); var bz = b.indexOf(t) >= 0;
-    btn.className = 'slot-btn' + (bz ? ' busy' : ''); btn.textContent = t; btn.disabled = bz;
-    if (!bz) { (function(time) { btn.addEventListener('click', function() { pickTime(time, btn); }); })(t); }
+    var btn = document.createElement('button');
+    var bz = b.indexOf(t) >= 0;
+    btn.className = 'slot-btn' + (bz ? ' busy' : '');
+    btn.textContent = t; btn.disabled = bz;
+    if (!bz) { (function(time) { btn.addEventListener('click', function() { pickTime(time,btn); }); })(t); }
     sg.appendChild(btn);
   });
 }
-function pickTime(t, btn) {
+function pickTime(t,btn) {
   document.querySelectorAll('.slot-btn').forEach(function(b) { b.classList.remove('sel'); });
   btn.classList.add('sel'); chosenTime = t;
   document.getElementById('dateNextBtn').style.display = 'block';
 }
 function prevMonth() { if (vM === 0) { vM = 11; vY--; } else vM--; renderCal(); }
-function nextMonth() { if (vM === 11) { vM = 0; vY++; } else vM++; renderCal(); }
-function dateStr() { if (!chosenDay) return '(no date selected)'; return chosenDay.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }); }
+function nextMonth() { if (vY === 2026 && vM >= 7) return; if (vM === 11) { vM = 0; vY++; } else vM++; renderCal(); }
+function dateStr() { if (!chosenDay) return '(no date selected)'; return chosenDay.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' }); }
 
 function renderMiniSum() {
-  var ids = Object.keys(selected);
   var ms = document.getElementById('miniSum');
   while (ms.firstChild) ms.removeChild(ms.firstChild);
   var h4 = document.createElement('h4'); h4.textContent = 'Your Booking'; ms.appendChild(h4);
-  function addRow(a, b) { var r = document.createElement('div'); r.className = 'ms-row'; var s1 = document.createElement('span'); s1.textContent = a; var s2 = document.createElement('span'); s2.textContent = b; r.appendChild(s1); r.appendChild(s2); ms.appendChild(r); }
+  function addRow(a,b) {
+    var r = document.createElement('div'); r.className = 'ms-row';
+    var s1 = document.createElement('span'); s1.textContent = a;
+    var s2 = document.createElement('span'); s2.textContent = b;
+    r.appendChild(s1); r.appendChild(s2); ms.appendChild(r);
+  }
   addRow('Date and Time', dateStr() + (chosenTime ? ' at ' + chosenTime : ''));
   addRow('Base Session', '$' + BASE);
-  var ids2 = Object.keys(selected);
-  ids2.forEach(function(id) { addRow(getDisplayName(id), '+$' + getP(id)); });
+  Object.keys(selected).forEach(function(id) { addRow(getDisplayName(id), '+$' + getP(id)); });
   addRow('Session Total', '$' + getTotal().toLocaleString());
 }
 
@@ -691,6 +732,12 @@ function renderPayStep() {
   var full = document.getElementById('fullAmountDisplay');
   if (full) full.textContent = '$' + getTotal().toLocaleString();
   selectPayOption('deposit');
+  var c1 = document.getElementById('chkContract');
+  var c2 = document.getElementById('chkDates');
+  if (c1) c1.checked = false;
+  if (c2) c2.checked = false;
+  var btn = document.getElementById('payBtn');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.4'; btn.style.cursor = 'not-allowed'; }
 }
 
 function goToPayment() {
